@@ -129,7 +129,7 @@ Now that we have created the view, we need to add it to the URLs file. Open `thi
         # ... URLs
         url(r'^api/v1/', include(router.urls)),
 
-        url(r'^', TemplateView.as_view(template_name='index.html')),
+        url('^.*$', IndexView.as_view(), name='index'),
     )
 
 {x: url_account_view_set}
