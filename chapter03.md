@@ -3,7 +3,7 @@ At this point we have the models and serializers needed to represent users. Now 
 
 Because we can't log in users that don't exist, it makes sense to start with registration. 
 
-To register a user, we need an API endpoint that will create an `Account` object, an AngularJS service to make an AJAX request to the API and a rgeistration form. Let's make the API endpoint first.
+To register a user, we need an API endpoint that will create an `Account` object, an AngularJS service to make an AJAX request to the API and a registration form. Let's make the API endpoint first.
 
 ## Making the account API viewset
 Open `authentication/views.py` and replace it's contents with the following code:
@@ -29,20 +29,17 @@ Open `authentication/views.py` and replace it's contents with the following code
 
             return (permissions.IsAuthenticated(), IsAccountOwner(),)
 
-        def create(self, request):
-            serializer = self.serializer_class(data=request.DATA)
+	def create(self, request):
+		serializer = self.serializer_class(data=request.data)
 
-            if serializer.is_valid():
-                account = Account.objects.create_user(**request.DATA)
+		if serializer.is_valid():
+		Account.objects.create_user(**serializer.validated_data)
 
-                account.set_password(request.DATA.get('password'))
-                account.save()
-
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response({
-                'status': 'Bad request',
-                'message': 'Account could not be created with received data.'
-            }, status=status.HTTP_400_BAD_REQUEST)
+		return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+		return Response({
+		'status': 'Bad request',
+		'message': 'Account could not be created with received data.'
+		}, status=status.HTTP_400_BAD_REQUEST)
 
 
 {x: create_account_viewset}
@@ -74,6 +71,19 @@ The only user that should be able to call dangerous methods (such as `update()` 
 If the HTTP method of the request ('GET', 'POST', etc) is "safe", then anyone can use that endpoint.
 
     def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+
+        if serializer.is_valid():
+            Account.objects.create_user(**serializer.validated_data)
+
+            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+        return Response({
+            'status': 'Bad request',
+            'message': 'Account could not be created with received data.'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def create(self, request):
         serializer = self.serializer_class(data=request.DATA)
 
         if serializer.is_valid():
@@ -88,11 +98,9 @@ If the HTTP method of the request ('GET', 'POST', etc) is "safe", then anyone ca
             'message': 'Account could not be created with received data.'
         }, status=status.HTTP_400_BAD_REQUEST)
 
-In Django, there is a specific method used for setting passwords: `set_password`. This method handles hashing and salting passwords so they are not stored in plaintext. Furthermore, the `authenticate` method we saw earlier expects passwords to be hashed and salted, so we can't authenticate with plaintext passwords anyways.
+When you create an object using the serializer's `.save()` method, the object's attributes are set literally. This means that a user registering with the password `'password'` will have their password stored as `'password'`. This is bad for a couple of reasons: 1) Storing passwords in plain text is a massive security issue. 2) Django hashes and salts passwords before comparing them, so the user wouldn't be able to log in using `'password'` as their password.
 
-For these reasons, we must override the `create` method for this viewset. Assuming the information we received creates a valid serializer, we go ahead and create an `Account` object using the `create_user` method from earlier.
-
-After the `Account` is saved we move on to setting the password and saving the object again. The response is either a `201` or a `400`, depending on the serializer's validity.
+We solve this problem by overriding the `.create()` method for this viewset and using `Account.objects.create_user()` to create the `Account` object.
 
 ## Making the IsAccountOwner permission
 Let's create the `IsAccountOwner()` permission from the view we just made.

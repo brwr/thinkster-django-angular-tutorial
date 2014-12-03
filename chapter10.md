@@ -79,7 +79,7 @@ To get started, open `static/javascripts/profiles/controllers/profile-settings.c
         * @memberOf thinkster.profiles.controllers.ProfileSettingsController
         */
         function destroy() {
-          Profile.destroy(vm.profile).then(profileSuccessFn, profileErrorFn);
+          Profile.destroy(vm.profile.username).then(profileSuccessFn, profileErrorFn);
 
           /**
           * @name profileSuccessFn
@@ -287,7 +287,7 @@ Create `static/templates/profiles/settings.html` with the following content:
 
           <div class="form-group">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-danger pull-right" ng-click="vm.profile.destroy()">Delete Account</button>
+            <button type="button" class="btn btn-danger pull-right" ng-click="vm.destroy()">Delete Account</button>
           </div>
         </form>
       </div>

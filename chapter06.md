@@ -65,7 +65,7 @@ Create a new file in `posts/` called `serializers.py` and add the following:
 
 
     class PostSerializer(serializers.ModelSerializer):
-        author = AccountSerializer(required=False)
+        author = AccountSerializer(read_only=True, required=False)
 
         class Meta:
             model = Post
@@ -83,13 +83,13 @@ Make a new serializer called `PostSerializer` in `posts/serializers.py`
 
 There isn't much here that's new, but there is one line in particular I want to look at.
 
-    author = AccountSerializer(required=False)
+    author = AccountSerializer(read_only=True, required=False)
 
 We explicitly defined a number of fields in our `AccountSerializer` from before, but this definition is a little different.
 
 When serializing a `Post` object, we want to include all of the author's information. Within Django REST Framework, this is known as a nested relationship. Basically, we are serializing the `Account` related to this `Post` and including it in our JSON.
 
-We pass `required=False` here because we will set the author of this post automatically.
+We pass `read_only=True` because we should not be updating an `Account` object with a `PostSerializer`. We also set `required=False` here because we will set the author of this post automatically.
 
     def get_validation_exclusions(self, *args, **kwargs):
         exclusions = super(PostSerializer, self).get_validation_exclusions()
@@ -120,10 +120,11 @@ Replace the contents of `posts/views.py` with the following:
                 return (permissions.AllowAny(),)
             return (permissions.IsAuthenticated(), IsAuthorOfPost(),)
 
-        def pre_save(self, obj):
-            obj.author = self.request.user
+	def perform_create(self, serializer):
+		instance = serializer.save(author=self.request.user)
 
-            return super(PostViewSet, self).pre_save(obj)
+		return super(PostViewSet, self).perform_create(serializer)
+
 
 
     class AccountPostsViewSet(viewsets.ViewSet):
@@ -144,14 +145,15 @@ Make an `AccountPostsViewSet` viewset
 
 Do these views look similar? They aren't that different than the ones we made to create `User` objects.
 
-    def pre_save(self, obj):
-        obj.author = self.request.user
+    def perform_create(self, serializer):
+        instance = serializer.save(author=self.request.user)
 
-        return super(PostViewSet, self).pre_save(obj)
+        return super(PostViewSet, self).perform_create(serializer)
 
-`pre_save` is called before the model of this view is saved.
 
-When a `Post` object is created it has to be associated with an author. Making the author type in their own username or id when creating adding a post to the site would be a bad experience, so we handle this association for them with the `pre_save` hook. We simply grab the user associated with this request and make them the author of this `Post`.
+`perform_create` is called before the model of this view is saved.
+
+When a `Post` object is created it has to be associated with an author. Making the author type in their own username or id when creating adding a post to the site would be a bad experience, so we handle this association for them with the `perform_create` hook. We simply grab the user associated with this request and make them the author of this `Post`.
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:

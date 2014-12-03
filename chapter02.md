@@ -24,7 +24,7 @@ Open `authentication/serializers.py` and add the following code and imports:
 
 
     class AccountSerializer(serializers.ModelSerializer):
-        password = serializers.CharField(source='password', write_only=True, required=False)
+        password = serializers.CharField(write_only=True, required=False)
         confirm_password = serializers.CharField(write_only=True, required=False)
 
         class Meta:
@@ -34,22 +34,25 @@ Open `authentication/serializers.py` and add the following code and imports:
                       'confirm_password',)
             read_only_fields = ('created_at', 'updated_at',)
 
-        def restore_object(self, attrs, instance=None):
-            if instance is not None:
-                instance.username = attrs.get('username', instance.username)
-                instance.tagline = attrs.get('tagline', instance.tagline)
+	def create(self, validated_data):
+		return Account.objects.create(**validated_data)
 
-                password = attrs.get('password', None)
-                confirm_password = attrs.get('confirm_password', None)
+	def update(self, instance, validated_data):
+		instance.username = validated_data.get('username', instance.username)
+		instance.tagline = validated_data.get('tagline', instance.tagline)
 
-                if password and confirm_password and password == confirm_password:
-                    instance.set_password(password)
-                    instance.save()
+		instance.save()
 
-                    update_session_auth_hash(self.context.get('request'), instance)
+		password = validated_data.get('password', None)
+		confirm_password = validated_data.get('confirm_password', None)
 
-                return instance
-            return Account(**attrs)
+		if password and confirm_password and password == confirm_password:
+		instance.set_password(password)
+		instance.save()
+
+		update_session_auth_hash(self.context.get('request'), instance)
+
+		return instance
 
 {x: create_account_serializer}
 Make a serializer called `AccountSerializer` in `authentication/serializers.py`
@@ -63,7 +66,7 @@ Make a serializer called `AccountSerializer` in `authentication/serializers.py`
 
 Let's take a closer look.
 
-    password = serializers.CharField(source='password', write_only=True, required=False)
+    password = serializers.CharField(write_only=True, required=False)
     confirm_password = serializers.CharField(write_only=True, required=False)
 
 Instead of including `password` in the `fields` tuple, which we will talk about in a few minutes, we explicitly define the field at the top of the `AccountSerializer` class. The reason we do this is so we can pass the `required=False` argument. Each field in `fields` is required, but we don't want to update the user's password unless they provide a new one.
@@ -91,17 +94,21 @@ The `fields` attribute of the `Meta` class is where we specify which attributes 
 
 If you recall, when we created the `Account` model, we made the `created_at` and `updated_at` fields self-updating. Because of this feature, we add them to a list of fields that should be read-only.
 
-    def restore_object(self, attrs, instance=None):
+    def create(self, validated_data):
+        # ...
 
-Earlier we mentioned that we sometimes want to turn JSON into a Python object. This is called deserialization and it is handled by the `self.restore_object()` method.
+    def update(self, instance, validated_data):
+        # ...
+
+Earlier we mentioned that we sometimes want to turn JSON into a Python object. This is called deserialization and it is handled by the `.create()` and `.update()` methods. When creating a new object, such as an `Account`, `.create()` is used. When we later update that `Account`, `.update()` is used.
 
     instance.username = attrs.get('username', instance.username)
     instance.tagline = attrs.get('tagline', instance.tagline)
 
 We will let the user update their username and tagline attributes for now. If these keys are present in the arrays dictionary, we will use the new value. Otherwise, the current value of the `instance` object is used. Here, `instance` is of type `Account`.
 
-    password = attrs.get('password', None)
-    confirm_password = attrs.get('confirm_password', None)
+    password = validated_data.get('password', None)
+    confirm_password = validated_data.get('confirm_password', None)
 
     if password and confirm_password and password == confirm_password:
         instance.set_password(password)
@@ -109,7 +116,7 @@ We will let the user update their username and tagline attributes for now. If th
 
 Before updating the user's password, we need to confirm they have provided values for both the `password` and `password_confirmation` field. We then check to make sure these two fields have equivelant values.
 
-After we verify that the password should be updated, we much use `Account.set_password()` to perform the update. `Account.set_password()` takes care of storing passwords in a secure way. It is important to note that we must explicitly save the model adter updating the password.
+After we verify that the password should be updated, we much use `Account.set_password()` to perform the update. `Account.set_password()` takes care of storing passwords in a secure way. It is important to note that we must explicitly save the model after updating the password.
 
 <div>
   <strong>Note</strong>

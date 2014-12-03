@@ -1,5 +1,5 @@
 # Extending Django's built-in User model
-Django has a built-in `User` model that offers a lot of functionality. The problem with `User` is that the model can not be extended to include more information. For example, we will be giving our users a tagline to display on their profile. `User` does not have a tagline attribute and we can not add one ourselves.
+Django has a built-in `User` model that offers a lot of functionality. The problem with `User` is that the model cannot be extended to include more information. For example, we will be giving our users a tagline to display on their profile. `User` does not have a tagline attribute and we cannot add one ourselves.
 
 `User` inherits from `AbstractBaseUser`. That is where `User` gets most of it's functionality. By creating a new model called `Account` and inheriting from `AbstractBaseUser`, we will get the necessary functionality of `User` (password hashing, session management, etc) and be able to extend `Account` to include extra information, such as a tagline.
 
