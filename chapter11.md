@@ -11,6 +11,19 @@ Be proud of what you've accomplished here and tell you friends by [tweeting abou
 
 Happy hacking!
 
+<div class="brewer-note">
+  <a href="https://gum.co/django-angular-tutorial/">
+    <img src="https://static-2.gumroad.com/res/gumroad/files/53f83f4d50314fbbbb7f360416a84d0b/original/gumroad-building-web-apps.png" style="width: 100%" />
+  </a>
+
+  <p>
+    <a href="https://gum.co/django-angular-tutorial/">
+      Click here to purchase the screencasts for <br />
+      <em>Building Web Applications with Django and AngularJS</em>.
+    </a>
+  </p>
+</div>
+
 ## Contributors
 
 Before you go, I want to give a shoutout to all of the people who were kind enough to send us emails and pull requests.

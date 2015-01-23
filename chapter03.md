@@ -29,17 +29,18 @@ Open `authentication/views.py` and replace it's contents with the following code
 
             return (permissions.IsAuthenticated(), IsAccountOwner(),)
 
-	def create(self, request):
-		serializer = self.serializer_class(data=request.data)
+        def create(self, request):
+            serializer = self.serializer_class(data=request.data)
 
-		if serializer.is_valid():
-		Account.objects.create_user(**serializer.validated_data)
+            if serializer.is_valid():
+                Account.objects.create_user(**serializer.validated_data)
 
-		return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
-		return Response({
-		'status': 'Bad request',
-		'message': 'Account could not be created with received data.'
-		}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+
+            return Response({
+                'status': 'Bad request',
+                'message': 'Account could not be created with received data.'
+            }, status=status.HTTP_400_BAD_REQUEST)
 
 
 {x: create_account_viewset}
@@ -82,21 +83,6 @@ If the HTTP method of the request ('GET', 'POST', etc) is "safe", then anyone ca
             'message': 'Account could not be created with received data.'
         }, status=status.HTTP_400_BAD_REQUEST)
 
-
-    def create(self, request):
-        serializer = self.serializer_class(data=request.DATA)
-
-        if serializer.is_valid():
-            account = Account.objects.create_user(**request.DATA)
-
-            account.set_password(request.DATA.get('password'))
-            account.save()
-
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response({
-            'status': 'Bad request',
-            'message': 'Account could not be created with received data.'
-        }, status=status.HTTP_400_BAD_REQUEST)
 
 When you create an object using the serializer's `.save()` method, the object's attributes are set literally. This means that a user registering with the password `'password'` will have their password stored as `'password'`. This is bad for a couple of reasons: 1) Storing passwords in plain text is a massive security issue. 2) Django hashes and salts passwords before comparing them, so the user wouldn't be able to log in using `'password'` as their password.
 

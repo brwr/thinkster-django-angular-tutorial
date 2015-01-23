@@ -15,7 +15,7 @@
 # Learning Django and AngularJS
 
 <div class="brewer-note">
-  <p>Click [here](https://gum.co/django-angular-tutorial/24hours) to purchase the screencasts for <br /><em>Building Web Applications with Django and AngularJS</em>.</p>
+  <p>[Click here to purchase the screencasts for <br /><em>Building Web Applications with Django and AngularJS</em>](https://gum.co/django-angular-tutorial).</p>
 </div>
 
 In this tutorial you will build a simplified Google+ clone called “Not Google Plus” with Django and AngularJS.
@@ -79,13 +79,6 @@ Let's build some software.
 The application we will be building requires a non-trivial amount of boilerplate. Instead of spending time setting up your environment, which is not the purpose of this tutorial, we have created a boilerplate project to get you started.
 
 You can find the boilerplate project on Github at [brwr/thinkster-django-angular-boilerplate](https://github.com/brwr/thinkster-django-angular-boilerplate). The repository includes a list of commands you need to run to get everything running.
-
-<div>
-  <strong>Note</strong>
-  <div class="brewer-note">
-    <p>If you are interested in a detailed appendix on setting up your environemnt, reach out to [@jamesbrewer](http://twitter.com/jamesbrwr) on Twitter.</p>
-  </div>
-</div>
 
 Go ahead and follow the setup instructions now.
 
