@@ -1,1 +1,10 @@
-{}
+{
+  "title": "Building Web Applications with Django and AngularJS",
+  "description": "Learn how to use AngularJS and Django to build a simplified Google+ clone called \"Not Google Plus\".",
+  "url": "django-angularjs-tutorial",
+  "twitter": "IAmJamesBrewer",
+  "git": "http://github.com/brwr/thinkster-django-angular-tutorial",
+  "author": {
+    "github": "brwr"
+  }
+}
