@@ -1,3 +1,5 @@
+# Learning Django and AngularJS
+
 <style type="text/css">
   .brewer-note {
     background: rgba(0, 0, 0, 0.05);
@@ -11,8 +13,6 @@
     margin-bottom: 0;
   }
 </style>
-
-# Learning Django and AngularJS
 
 <div class="brewer-note">
   <p>[Click here to purchase the screencasts for <br /><em>Building Web Applications with Django and AngularJS</em>](https://gum.co/django-angular-tutorial).</p>
