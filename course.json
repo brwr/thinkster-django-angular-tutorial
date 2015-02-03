@@ -6,5 +6,6 @@
   "git": "http://github.com/brwr/thinkster-django-angular-tutorial",
   "author": {
     "github": "brwr"
-  }
+  },
+  "coverImage": "django.jpg"
 }
