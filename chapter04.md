@@ -290,7 +290,7 @@ Create a file in `static/javascripts/authentication/controllers/` called `login.
     * @namespace thinkster.authentication.controllers
     */
     (function () {
-      'use static';
+      'use strict';
 
       angular
         .module('thinkster.authentication.controllers')
@@ -354,6 +354,8 @@ Taking a step back, let's add a check to `RegisterController` and redirect the u
 
 Open `static/javascripts/authentication/controllers/register.controller.js` and add the following just inside the definition of the controller:
 
+    activate();
+    
     /**
      * @name activate
      * @desc Actions to be performed when this controller is instantiated
