@@ -1,12 +1,11 @@
 # Displaying user profiles
+
+{video: display-user-profile}
+
 We already have the Django views and routes necessary to display a profile for each user. From here we can jump into making an AngularJS service and then move on to the template and controllers.
 
-<div>
-  <strong>Note</strong>
-  <div class="brewer-note">
-    <p>In this section and the next, we will refer to accounts as profiles. For the purposes of our client, that is effectively what the `Account` model translates into: a user's profile.</p>
-  </div>
-</div>
+{info}
+In this section and the next, we will refer to accounts as profiles. For the purposes of our client, that is effectively what the `Account` model translates into: a user's profile.
 
 
 ## Making the profile modules

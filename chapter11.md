@@ -1,5 +1,5 @@
 # Congratulations, you did it!
-During this tutorial you accomplished a lot. 
+During this tutorial you accomplished a lot.
 
 For starters, you build an entire authentication system by yourself! You extended Django's built-in `User` model and added various attributes and did so in a way that makes adding other information an easy feat when it becomes necessary. You went on to built both the front and back ends for registration, logging in, logging out, and updating the user's profile.
 
@@ -11,18 +11,6 @@ Be proud of what you've accomplished here and tell you friends by [tweeting abou
 
 Happy hacking!
 
-<div class="brewer-note">
-  <a href="https://gum.co/django-angular-tutorial/">
-    <img src="https://static-2.gumroad.com/res/gumroad/files/53f83f4d50314fbbbb7f360416a84d0b/original/gumroad-building-web-apps.png" style="width: 100%" />
-  </a>
-
-  <p>
-    <a href="https://gum.co/django-angular-tutorial/">
-      Click here to purchase the screencasts for <br />
-      <em>Building Web Applications with Django and AngularJS</em>.
-    </a>
-  </p>
-</div>
 
 ## Contributors
 
@@ -30,4 +18,4 @@ Before you go, I want to give a shoutout to all of the people who were kind enou
 
 Here is a full list of contributors who helped with the current release:
 
-Albert Pai, Christophe Blefari, Diego Martinez, Eric Simons, Ernest Ezis, Iulian Gulea, James Brewer, Lorenzo Cinque, Martin Hill, Martin Oosthuizen, Matt Greene, Ronald Paloschi, Seth Clossman, Vladimir Vitvitskiy, Zach Reinhardt
+Albert Pai, Christophe Blefari, Diego Martinez, Eric Simons, Ernest Ezis, Iulian Gulea, James Brewer, Lorenzo Cinque, Martin Hill, Martin Oosthuizen, Matt Green, Ronald Paloschi, Seth Clossman, Vladimir Vitvitskiy, Zach Reinhardt
