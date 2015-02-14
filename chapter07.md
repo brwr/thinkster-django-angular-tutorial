@@ -1,6 +1,8 @@
 # Rendering Post objects
 Until now, the index page has been empty. Now that we have handled authentication and the backend details for the `Post` model, it's time to give our users something to interact with. We will do this by creating a service that handles retrieving and creating `Post`s and some controllers and directives for handling how the data is displayed.
 
+{video: render-post-object}
+
 ## A module for posts
 Let's define the posts modules.
 

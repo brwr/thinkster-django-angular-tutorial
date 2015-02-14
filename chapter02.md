@@ -1,6 +1,8 @@
 # Serializing the Account Model
 The AngularJS application we are going to build will make AJAX requests to the server to get the data it intends to display. Before we can send that data back to the client, we need to format it in a way that the client can understand; in this case, we choose JSON. The process of transforming Django models to JSON is called serialization and that is what we will talk about now.
 
+{video: serialize-account-model}
+
 As the model we want to serialize is called `Account`, the serializer we will create is going to be called `AccountSerializer`.
 
 ## Django REST Framework
@@ -57,12 +59,8 @@ Open `authentication/serializers.py` and add the following code and imports:
 {x: create_account_serializer}
 Make a serializer called `AccountSerializer` in `authentication/serializers.py`
 
-<div>
-  <strong>Note</strong>
-  <div class="brewer-note">
-    <p>From here on, we will declare imports that are used in each snippet. These may already be present in the file. If so, they do not need to be added a second time.</p>
-  </div>
-</div>
+{info}
+From here on, we will declare imports that are used in each snippet. These may already be present in the file. If so, they do not need to be added a second time.
 
 Let's take a closer look.
 
@@ -118,12 +116,8 @@ Before updating the user's password, we need to confirm they have provided value
 
 After we verify that the password should be updated, we much use `Account.set_password()` to perform the update. `Account.set_password()` takes care of storing passwords in a secure way. It is important to note that we must explicitly save the model after updating the password.
 
-<div>
-  <strong>Note</strong>
-  <div class="brewer-note">
-    <p>This is a naive implementation of how to validate a password. I would not recommend using this in a real-world system, but for our purposes this does nicely.</p>
-  </div>
-</div>
+{info}
+This is a naive implementation of how to validate a password. I would not recommend using this in a real-world system, but for our purposes this does nicely.
 
     update_session_auth_hash(self.context.get('request'), instance)
 

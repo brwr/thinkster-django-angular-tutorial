@@ -14,6 +14,9 @@ Make a Django app named `authentication`
 
 
 ## Creating the Account model
+
+{video: account-manager}
+
 To get started, we will create the `Account` model we just talked about.
 
 Open `authentication/models.py` in your favorite text editor and edit it to reflect the following:
@@ -209,12 +212,9 @@ When you're ready, generate the migrations for the `authentication` app and appl
     Running migrations:
         Applying authentication.0001_initial... OK
 
-<div>
-  <strong>Note</strong>
-  <div class="brewer-note">
-    <p>From now on, the output from migration commands will not be included for brevity.</p>
-  </div>
-</div>
+
+{info}
+From now on, the output from migration commands will not be included for brevity.
 
 {x: initial_migration}
 Generate the migrations for the `authentication` app and apply them
