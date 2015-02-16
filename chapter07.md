@@ -138,7 +138,7 @@ Include `posts.service.js` in `javascripts.html`
 
 This code should look pretty familiar. It is very similar to the services we created before.
 
-The `Posts` service only has two methods: `all` and `create`.
+The `Posts` service only has three methods: `all`, `create` and `get`.
 
 On the index page, we will use `Posts.all()` to get the list of objects we want to display. We will use `Posts.create()` to let users add their own posts.
 
@@ -421,7 +421,7 @@ There are two parts of the directives API that I want to touch on: `scope` and `
 
 `scope` defines the scope of this directive, similar to how `$scope` works for controllers. The difference is that, in a controller, a new scope is implicitly created. For a directive, we have the option of explicitly defining our scopes and that's what we do here.
 
-The second line, `posts: '='` simply means that we want to set `$scope.posts` to the value passed in through the `posts` attribute in the template that we made earlier.
+The second line, `posts: '='` simply means that we want to set `$scope.posts` to the value passed in through the `posts` attribute in the template that we will make below.
 
     restrict: 'E',
 
@@ -429,7 +429,7 @@ The second line, `posts: '='` simply means that we want to set `$scope.posts` to
 
 Another common option is `A` (for attribute), which tells Angular to only match the name of the directive with the name of an attribute. `ngDialog` uses this option, as we will see shortly.
 
-## Controller the posts directive with PostsController
+## Control the posts directive with PostsController
 The directive we just created requires a controller called `PostsController`. 
 
 Create `static/javascripts/posts/controllers/posts.controller.js` with the following content:

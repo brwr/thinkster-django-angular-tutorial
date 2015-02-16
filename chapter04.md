@@ -10,7 +10,7 @@ Open up `authentication/views.py` and add the following:
 
     from django.contrib.auth import authenticate, login
 
-    from rest_framework improt status, views
+    from rest_framework import status, views
     from rest_framework.response import Response
 
     class LoginView(views.APIView):
@@ -371,7 +371,7 @@ Redirect authenticated users to the index view in `RegisterController`
 
 If you remember, we also talked about logging a user in automatically when they register. Since we are already updating registration related content, let's update the `register` method in the `Authentication` service.
 
-Replace `Authentication.register` when the following:
+Replace `Authentication.register` with the following:
 
     /**
     * @name register

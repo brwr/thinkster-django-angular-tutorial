@@ -222,7 +222,7 @@ Generate the migrations for the `authentication` app and apply them
 ## Making yourself a superuser
 Let's talk more about the `python manage.py createsuperuser` command from a few minutes ago.
 
-Different users have different levels of access in any given application. Some users are admins and can do anywhere, while some are just regular users whose actions should be limited. In Django, a super user is the highest level of access you can have. Because we want the ability to work will all facets of our application, we will create a super user. That is what `python manage.py createsuperuser` does.
+Different users have different levels of access in any given application. Some users are admins and can do anything, while some are just regular users whose actions should be limited. In Django, a super user is the highest level of access you can have. Because we want the ability to work will all facets of our application, we will create a super user. That is what `python manage.py createsuperuser` does.
 
 After running the command, Django will prompt you for some information and create an `Account` with superuser access. Go ahead and give it a try.
 

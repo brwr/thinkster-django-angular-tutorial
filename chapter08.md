@@ -52,7 +52,7 @@ Now we need to create the form the user will type their new post into. Open `sta
 Make a template for adding new posts in `static/templates/posts/new-post.html`
 
 ## Controlling the new post interface with NewPostController
-Create `static/javascripts/posts/controller/new-post.controller.js` with the following content:
+Create `static/javascripts/posts/controllers/new-post.controller.js` with the following content:
 
     /**
     * NewPostController
