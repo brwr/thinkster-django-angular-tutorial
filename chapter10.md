@@ -1,6 +1,9 @@
 # Updating user profiles
 The last feature we will implement in this tutorial is the ability for a user to update their profile. The updates we offer will be minimal, including updating the user's first name, last name, email, and tagline, but you will get the gist of it and can add more options at will.
 
+{video: update-user-profile}
+
+
 ## ProfileSettingsController
 To get started, open `static/javascripts/profiles/controllers/profile-settings.controller.js` and add the following contents:
 

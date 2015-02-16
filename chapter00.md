@@ -1,22 +1,6 @@
-<style type="text/css">
-  .brewer-note {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 3px;
-    margin: 0 -10px 20px;
-    padding: 10px;
-    text-align: center;
-  }
-
-  .brewer-note p:last-of-type {
-    margin-bottom: 0;
-  }
-</style>
-
 # Learning Django and AngularJS
 
-<div class="brewer-note">
-  <p>[Click here to purchase the screencasts for <br /><em>Building Web Applications with Django and AngularJS</em>](https://gum.co/django-angular-tutorial).</p>
-</div>
+{intro-video: django-intro}
 
 In this tutorial you will build a simplified Google+ clone called “Not Google Plus” with Django and AngularJS.
 
@@ -51,7 +35,7 @@ Throughout this tutorial, we strive to maintain consistent formatting. This sect
         $ python manage.py runserver
 
 * Unless otherwise specified, you should assume that all terminal commands are run from the root directory of your project.
- 
+
 ## A word on code style
 Where possible, we opt to follow style guides created by the Django and Angular communities.
 
@@ -60,7 +44,7 @@ For Django, we follow [PEP8](http://legacy.python.org/dev/peps/pep-0008/) strict
 For AngularJS, we have adopted John Papa's [AngularJS Style Guide](https://github.com/johnpapa/angularjs-styleguide). We also adhere to [Google's JavaScript Style Guide](https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml) where it makes sense to do so.
 
 ## A humble request for feedback
-At the risk of sounding cliche, we would not have a reason to make this tutorial if not for you. Because we believe that your success is our success, we invite you to contact us with any thoughts you have about the tutorial. You can reach us via the Olark box in the bottom-right corner of the screen, via Twitter at [@jamesbrwr](http://twitter.com/jamesbrwr) or [@GoThinkster](http://twitter.com/gothinkster), or by emailing [support@thinkster.io](mailto:support@thinkster.io).
+At the risk of sounding cliche, we would not have a reason to make this tutorial if not for you. Because we believe that your success is our success, we invite you to contact us with any thoughts you have about the tutorial. You can reach us via Twitter at [@jamesbrwr](http://twitter.com/jamesbrwr) or [@GoThinkster](http://twitter.com/gothinkster), or by emailing [support@thinkster.io](mailto:support@thinkster.io).
 
 We welcome criticism openly and accept praise if you believe it is warranted. We're interested in knowing what you like, what you don't like, what you want to know more about, and anything else you feel is relevant.
 
@@ -76,6 +60,9 @@ In addition to typing the code yourself, do not be afraid to get your hands dirt
 Let's build some software.
 
 # Setting up your environment
+
+{video: setup-environment}
+
 The application we will be building requires a non-trivial amount of boilerplate. Instead of spending time setting up your environment, which is not the purpose of this tutorial, we have created a boilerplate project to get you started.
 
 You can find the boilerplate project on Github at [brwr/thinkster-django-angular-boilerplate](https://github.com/brwr/thinkster-django-angular-boilerplate). The repository includes a list of commands you need to run to get everything running.

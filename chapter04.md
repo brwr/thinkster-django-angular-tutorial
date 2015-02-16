@@ -1,6 +1,8 @@
 # Logging users in
 Now that users can register, they need a way to log in. As it turns out, this is part of what we are missing from our registration system. Once a user registers, we should automatically log them in.
 
+{video: log-user-in}
+
 To get started, we will create views for logging in and logging out. Once those are done we will progress in a fashion similar to the registration systems: services, controllers, etc.
 
 ## Making the login API view
@@ -290,7 +292,7 @@ Create a file in `static/javascripts/authentication/controllers/` called `login.
     * @namespace thinkster.authentication.controllers
     */
     (function () {
-      'use static';
+      'use strict';
 
       angular
         .module('thinkster.authentication.controllers')
@@ -354,6 +356,8 @@ Taking a step back, let's add a check to `RegisterController` and redirect the u
 
 Open `static/javascripts/authentication/controllers/register.controller.js` and add the following just inside the definition of the controller:
 
+    activate();
+    
     /**
      * @name activate
      * @desc Actions to be performed when this controller is instantiated
@@ -427,12 +431,8 @@ Open up `static/javascripts/thinkster.routes.js` and add a route for the login f
 {x: angularjs_login_route}
 Add a route for `LoginController`
 
-<div>
-  <strong>Note</strong>
-  <div class="brewer-note">
-    <p>See how you can chain calls to `$routeProvider.when()`? Going forward, we will ignore old routes for brevity. Just keep in mind that these calls should be chained and that the first route matched will take control.</p>
-  </div>
-</div>
+{info}
+See how you can chain calls to `$routeProvider.when()`? Going forward, we will ignore old routes for brevity. Just keep in mind that these calls should be chained and that the first route matched will take control.</p>
 
 ## Include new .js files
 If you can believe it, we've only created one new JavaScript file since the last time: `login.controller.js`. Let's add it to `javascripts.html` with the other JavaScript files:

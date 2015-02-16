@@ -1,4 +1,7 @@
 # Registering new users
+
+{video: register-user-1}
+
 At this point we have the models and serializers needed to represent users. Now we need to build an authentication system. This involves creating the various views and interfaces for registering, logging in and logging out. We will also touch on an `Authentication` service with AngularJS and a few different controllers.
 
 Because we can't log in users that don't exist, it makes sense to start with registration. 
@@ -129,24 +132,16 @@ Now that we have created the view, we need to add it to the URLs file. Open `thi
 {x: url_account_view_set}
 Add an API endpoint for `AccountViewSet`
 
-<div>
-  <strong>Note</strong>
-  <div class="brewer-note">
-    <p>It is very important that the last URL in the above snippet always be the last URL. This is known as a passthrough or catch-all route. It accepts all requests not matched by a previous rule and passes the request through to AngularJS's router for processing. The order of other URLS is normally insignificant.</p>
-  </div>
-</div>
+{info}
+It is very important that the last URL in the above snippet always be the last URL. This is known as a passthrough or catch-all route. It accepts all requests not matched by a previous rule and passes the request through to AngularJS's router for processing. The order of other URLS is normally insignificant.
 
 ## An Angular service for registering new users
 With the API endpoint in place, we can create an AngularJS service that will handle communication between the client and the server.
 
 Make a file in `static/javascripts/authentication/services/` called `authentication.service.js` and add the following code:
 
-<div>
-  <strong>Note</strong>
-  <div class="brewer-note">
-    <p>Feel free to leave the comments out of your own code. It takes a lot of time to type them all out!</p>
-  </div>
-</div>
+{info}
+Feel free to leave the comments out of your own code. It takes a lot of time to type them all out!
 
     /**
     * Authentication
@@ -234,6 +229,9 @@ At this point, the `Authentication` service has only one method: `register`, whi
 As mentioned before, we need to make an AJAX request to the API endpoint we made. As data, we include the `username`, `password` and `email` parameters this method received. We have no reason to do anything special with the response, so we will let the caller of `Authentication.register` handle the callback.
 
 ## Making an interface for registering new users
+
+{video: register-user-2}
+
 Let's begin creating the interface users will use to register. Begin by creating a file in `static/templates/authentication/` called `register.html` with the following content: 
 
     <div class="row">

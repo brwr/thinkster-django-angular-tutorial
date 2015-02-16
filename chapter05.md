@@ -1,6 +1,8 @@
 # Logging users out
 Given that users can register and login, we can assume they will want a way to log out. People get mad when they can't log out.
 
+{video: log-user-out}
+
 ## Making a logout API view
 Let's implement the last authentication-related API view.
 

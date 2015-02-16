@@ -1,4 +1,7 @@
 # Making new posts
+
+{video: make-new-post}
+
 Given that we already have the necessary endpoints in place, the next thing we need to let users make new posts is an interface. We accomplish this by adding a button to the bottom-right corner of the screen. When this button is clicked, a modal shows up asking the user to type in their post.
 
 We only want this button to show up on the index page for now, so open `static/templates/layout/index.html` and add the following snippet to the bottom of the file:

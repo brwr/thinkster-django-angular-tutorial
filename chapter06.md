@@ -1,6 +1,8 @@
 # Making a Post model
 In this section we will make a new app and create a `Post` model similar to a status on Facebook or a tweet on Twitter. After we create our model we will move on to serializing `Post`s and then we will create a few new endpoints for our API.
 
+{video: making-post-model}
+
 ## Making a posts app
 First things first: go ahead and create a new app called `posts`.
 
