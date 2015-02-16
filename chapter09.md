@@ -96,7 +96,7 @@ Create `static/javascripts/profiles/services/profile.service.js` with the follow
         * @memberOf thinkster.profiles.services.Profile
         */
         function destroy(profile) {
-          return $http.delete('/api/v1/accounts/' + profile.id + '/');
+          return $http.delete('/api/v1/accounts/' + profile.username + '/');
         }
 
 
