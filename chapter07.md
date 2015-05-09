@@ -560,7 +560,7 @@ Create `static/javascripts/posts/controllers/posts.controller.js` with the follo
         * @param {number} newWindowSize The new window size number
         * @param {number} oldWindowSize The window size number
         updated
-        * @memberOf thinkster.posts.controllers.windowResizeRender
+        * @memberOf thinkster.posts.controllers.PostsController
         */
         function windowResizeRender(newWindowSize, oldWindowSize) {
             if (oldWindowSize !== oldWindowSize){
@@ -571,7 +571,7 @@ Create `static/javascripts/posts/controllers/posts.controller.js` with the follo
                 }
 
                 //Use the current value of posts to fill the columns
-                for (i = 0; i < $scope.posts.length; ++i) {
+                for (var i = 0; i < $scope.posts.length; ++i) {
                     var column = approximateShortestColumn();
                     vm.columns[column].push($scope.posts[i]);
                 }
