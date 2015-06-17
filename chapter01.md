@@ -77,7 +77,7 @@ Ideally we should have a more personal way to reference our users. Because we un
 
     tagline = models.CharField(max_length=140, blank=True)
 
-As mentioned before, the `tagline` attribute will be displayed on the user's profile. This gives the profile a hint of the user's personally, so it is worth including.
+As mentioned before, the `tagline` attribute will be displayed on the user's profile. This gives the profile a hint of the user's personality, so it is worth including.
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
