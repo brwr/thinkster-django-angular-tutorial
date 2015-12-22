@@ -69,7 +69,7 @@ Let's take a closer look.
 
 Instead of including `password` in the `fields` tuple, which we will talk about in a few minutes, we explicitly define the field at the top of the `AccountSerializer` class. The reason we do this is so we can pass the `required=False` argument. Each field in `fields` is required, but we don't want to update the user's password unless they provide a new one.
 
-`confirm_pssword` is similar to `password` and is used only to make sure the user didn't make a typo on accident.
+`confirm_password` is similar to `password` and is used only to make sure the user didn't make a typo on accident.
 
 Also note the use of the `write_only=True` argument. The user's password, even in it's hashed and salted form, should not be visible to the client in the AJAX response.
 
@@ -100,8 +100,8 @@ If you recall, when we created the `Account` model, we made the `created_at` and
 
 Earlier we mentioned that we sometimes want to turn JSON into a Python object. This is called deserialization and it is handled by the `.create()` and `.update()` methods. When creating a new object, such as an `Account`, `.create()` is used. When we later update that `Account`, `.update()` is used.
 
-    instance.username = attrs.get('username', instance.username)
-    instance.tagline = attrs.get('tagline', instance.tagline)
+    instance.username = validated_data.get('username', instance.username)
+    instance.tagline = validated_data.get('tagline', instance.tagline)
 
 We will let the user update their username and tagline attributes for now. If these keys are present in the arrays dictionary, we will use the new value. Otherwise, the current value of the `instance` object is used. Here, `instance` is of type `Account`.
 
