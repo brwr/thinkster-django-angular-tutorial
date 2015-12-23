@@ -21,9 +21,9 @@ Remember: whenever you create a new app you have to add it to the `INSTALLED_APP
 ## Making the Post model
 After you create the `posts` app Django made a new file called `posts/models.py`. Go ahead and open it up and add the following:
 
-from django.db import models
+    from django.db import models
 
-from authentication.models import Account
+    from authentication.models import Account
 
 
     class Post(models.Model):
@@ -47,7 +47,7 @@ Because each `Account` can have many `Post` objects, we need to set up a many-to
 
 The way to do this in Django is with using a `ForeignKey` field to associate each `Post` with a `Account`. 
 
-Django is smart enough to know the foreign key we've set up here should be reversible. That is to say, given a `Account`, you should be able to access that user's `Post`s. In Django these `Post` objects can be accessed through `Account.post_set` (not `Account.posts`).
+Django is smart enough to know the foreign key we've set up here should be reversible. That is to say, given a `Account`, you should be able to access that user's `Post`s. In Django, these `Post` objects can be accessed through `Account.post_set` (not `Account.posts`).
 
 Now that the model exists, don't forget to migrate.
 
@@ -62,7 +62,7 @@ Create a new file in `posts/` called `serializers.py` and add the following:
 
     from rest_framework import serializers
 
-    from authentication.serializers import Account
+    from authentication.serializers import AccountSerializer
     from posts.models import Post
 
 
@@ -122,10 +122,10 @@ Replace the contents of `posts/views.py` with the following:
                 return (permissions.AllowAny(),)
             return (permissions.IsAuthenticated(), IsAuthorOfPost(),)
 
-	def perform_create(self, serializer):
-		instance = serializer.save(author=self.request.user)
+        def perform_create(self, serializer):
+            instance = serializer.save(author=self.request.user)
 
-		return super(PostViewSet, self).perform_create(serializer)
+            return super(PostViewSet, self).perform_create(serializer)
 
 
 
@@ -163,7 +163,7 @@ When a `Post` object is created it has to be associated with an author. Making t
         return (permissions.IsAuthenticated(), IsAuthorOfPost(),)
 
 
-Similar to the permissions we used for the `Account` viewset, dangerous HTTP methods require the user be authenticated and authorized to make changes to this `Post`. We will created the `IsAuthorOfPost` permission shortly. If the HTTP method is safe, we allow anyone to access this view.
+Similar to the permissions we used for the `Account` viewset, dangerous HTTP methods require the user be authenticated and authorized to make changes to this `Post`. We will create the `IsAuthorOfPost` permission shortly. If the HTTP method is safe, we allow anyone to access this view.
 
     class AccountPostsViewSet(viewsets.ViewSet):
 
