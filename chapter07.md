@@ -467,7 +467,7 @@ Create `static/javascripts/posts/controllers/posts.controller.js` with the follo
         */
         function activate() {
           $scope.$watchCollection(function () { return $scope.posts; }, render);
-          $scope.$watch(function () { return $(window).width(); }, render);
+          $scope.$watch(function () { return $(window).width(); }, windowResizeRender);
         }
         
 
@@ -552,6 +552,30 @@ Create `static/javascripts/posts/controllers/posts.controller.js` with the follo
               vm.columns[column].push(current[i]);
             }
           }
+        }
+        
+        /**
+        * @name windowResizeRender
+        * @desc Renders Posts into columns of approximately equal height when window is resized
+        * @param {number} newWindowSize The new window size number
+        * @param {number} oldWindowSize The window size number
+        updated
+        * @memberOf thinkster.posts.controllers.PostsController
+        */
+        function windowResizeRender(newWindowSize, oldWindowSize) {
+            if (oldWindowSize !== oldWindowSize){
+                vm.columns = [];
+
+                for (var i = 0; i < calculateNumberOfColumns(); ++i) {
+                    vm.columns.push([]);
+                }
+
+                //Use the current value of posts to fill the columns
+                for (var i = 0; i < $scope.posts.length; ++i) {
+                    var column = approximateShortestColumn();
+                    vm.columns[column].push($scope.posts[i]);
+                }
+            }
         }
       }
     })();
