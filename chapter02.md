@@ -114,7 +114,7 @@ We will let the user update their username and tagline attributes for now. If th
 
 Before updating the user's password, we need to confirm they have provided values for both the `password` and `password_confirmation` field. We then check to make sure these two fields have equivelant values.
 
-After we verify that the password should be updated, we much use `Account.set_password()` to perform the update. `Account.set_password()` takes care of storing passwords in a secure way. It is important to note that we must explicitly save the model after updating the password.
+After we verify that the password should be updated, we must use `Account.set_password()` to perform the update. `Account.set_password()` takes care of storing passwords in a secure way. It is important to note that we must explicitly save the model after updating the password.
 
 {info}
 This is a naive implementation of how to validate a password. I would not recommend using this in a real-world system, but for our purposes this does nicely.

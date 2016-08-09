@@ -68,11 +68,11 @@ To tell Django that we want to treat the email field as the username for this mo
 
     username = models.CharField(max_length=40, unique=True)
 
-Even though we will log in with our email address, we still want the user to have a username. We need some to display on their posts and profile page. We will also use the username in our URLs, so the username must be unique. To this end, we pass the `unique=True` argument in the username field.
+Even though we will log in with our email address, we still want the user to have a username. We need something to display on their posts and profile page. We will also use the username in our URLs, so the username must be unique. To this end, we pass the `unique=True` argument in the username field.
 
     first_name = models.CharField(max_length=40, blank=True)
     last_name = models.CharField(max_length=40, blank=True)
- 
+
 Ideally we should have a more personal way to reference our users. Because we understand that not all users are comfortable giving out their personal details, we make the `first_name` and `last_name` fields optional by passing the `blank=True` argument.
 
     tagline = models.CharField(max_length=140, blank=True)
@@ -108,7 +108,7 @@ When working in the shell, as we will see shortly, the default string representa
 `get_full_name()` and `get_short_name()` are Django conventions. We won't be using either of these methods, but it is still a good idea to include them to comply with Django conventions.
 
 ## Making a Manager class for Account
-When substituting a customer user model, it is required that you also define a related `Manager` class the overrides the `create_user()` and `create_superuser()` methods.
+When substituting a custom user model, it is required that you also define a related `Manager` class the overrides the `create_user()` and `create_superuser()` methods.
 
 With `authentication/models.py` still open, add the following class above the `Account` class:
 
@@ -222,7 +222,7 @@ Generate the migrations for the `authentication` app and apply them
 ## Making yourself a superuser
 Let's talk more about the `python manage.py createsuperuser` command from a few minutes ago.
 
-Different users have different levels of access in any given application. Some users are admins and can do anywhere, while some are just regular users whose actions should be limited. In Django, a super user is the highest level of access you can have. Because we want the ability to work will all facets of our application, we will create a super user. That is what `python manage.py createsuperuser` does.
+Different users have different levels of access in any given application. Some users are admins and can do anything, while some are just regular users whose actions should be limited. In Django, a super user is the highest level of access you can have. Because we want the ability to work with all facets of our application, we will create a super user. That is what `python manage.py createsuperuser` does.
 
 After running the command, Django will prompt you for some information and create an `Account` with superuser access. Go ahead and give it a try.
 

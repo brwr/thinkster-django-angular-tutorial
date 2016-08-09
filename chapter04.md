@@ -134,7 +134,7 @@ Make sure to expose it as part of the service:
 {x: angularjs_authentication_service_login}
 Add a `login` method to your `Authentication` service
 
-Much like the `register()` method from before, `login()` returns makes an AJAX request to our API and returns a promise.
+Much like the `register()` method from before, `login()` makes an AJAX request to our API and returns a promise.
 
 Now let's talk about a few utility methods we need for managing session information on the client.
 
@@ -375,7 +375,7 @@ Redirect authenticated users to the index view in `RegisterController`
 
 If you remember, we also talked about logging a user in automatically when they register. Since we are already updating registration related content, let's update the `register` method in the `Authentication` service.
 
-Replace `Authentication.register` when the following:
+Replace `Authentication.register` with the following:
 
     /**
     * @name register
