@@ -572,7 +572,7 @@ The only thing worth mentioning here is this line:
 
     $scope.$watchCollection(function () { return $scope.posts; }, render);
 
-Because we do not have direct access to the ViewModel that `posts` is stored on, we watch `$scope.posts` instead of `vm.posts`. Furthermore, we use `$watchCollection` here because `$scope.posts` is an array. `$watch` watches the object's reference, not it's actual value. `$watchCollection` watches the value of an array from changes. If we used `$watch` here instead of `$watchCollection`, the changes caused by `$scope.posts.shift()` and `$scope.posts.unshift()` would not trigger the watcher.
+Because we do not have direct access to the ViewModel that `posts` is stored on, we watch `$scope.posts` instead of `vm.posts`. Furthermore, we use `$watchCollection` here because `$scope.posts` is an array. `$watch` watches the object's reference, not it's actual value. `$watchCollection` watches the value of an array for changes. If we used `$watch` here instead of `$watchCollection`, the changes caused by `$scope.posts.shift()` and `$scope.posts.unshift()` would not trigger the watcher.
 
 ## Making a template for the posts directive
 In our directive we defined a `templateUrl` that doesn't match any of our existing templates. Let's go ahead and make a new one.

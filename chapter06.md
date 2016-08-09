@@ -45,7 +45,7 @@ Our method of walking through the code line-by-line is working well so far. Why 
 
 Because each `Account` can have many `Post` objects, we need to set up a many-to-one relation.
 
-The way to do this in Django is with using a `ForeignKey` field to associate each `Post` with a `Account`. 
+The way to do this in Django is with a `ForeignKey` field to associate each `Post` with a `Account`.
 
 Django is smart enough to know the foreign key we've set up here should be reversible. That is to say, given a `Account`, you should be able to access that user's `Post`s. In Django these `Post` objects can be accessed through `Account.post_set` (not `Account.posts`).
 
@@ -62,7 +62,7 @@ Create a new file in `posts/` called `serializers.py` and add the following:
 
     from rest_framework import serializers
 
-    from authentication.serializers import Account
+    from authentication.serializers import AccountSerializer
     from posts.models import Post
 
 
@@ -122,10 +122,10 @@ Replace the contents of `posts/views.py` with the following:
                 return (permissions.AllowAny(),)
             return (permissions.IsAuthenticated(), IsAuthorOfPost(),)
 
-	def perform_create(self, serializer):
-		instance = serializer.save(author=self.request.user)
+        def perform_create(self, serializer):
+            instance = serializer.save(author=self.request.user)
 
-		return super(PostViewSet, self).perform_create(serializer)
+            return super(PostViewSet, self).perform_create(serializer)
 
 
 
